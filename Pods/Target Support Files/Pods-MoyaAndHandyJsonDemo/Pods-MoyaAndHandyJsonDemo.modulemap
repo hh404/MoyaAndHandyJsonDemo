@@ -1,0 +1,6 @@
+framework module Pods_MoyaAndHandyJsonDemo {
+  umbrella header "Pods-MoyaAndHandyJsonDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

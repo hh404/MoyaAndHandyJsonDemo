@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HandyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,9 +17,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        struct Person {
+            let name: String
+            let age: Int
+        }
+        
+        let xiaoMing = Person(name: "XiaoMing", age: 16)
+        let r = Mirror(reflecting: xiaoMing) // r 是 MirrorType
+        
+        print("xiaoMing 是 \(r.displayStyle!)")
+        
+        print("属性个数:\(r.children.count)")
+        
+        for i in r.children {
+            print(i.label,i.value)
+            //if(r.children.startIndex<r.children.endIndex)
+            //i.label
+            // print("属性名:\(r.children[i].0!)，值:\(r.children[i].1)")
+        }
         return true
     }
 
+    
+    func test()  {
+        
+        struct MirrorPerson {
+            let name: String
+            let age: Int
+        }
+        func testMirror()  {
+            let xiaoMing = MirrorPerson(name: "XiaoMing", age: 16)
+            let r = Mirror(reflecting: xiaoMing) // r 是 MirrorType
+            
+            print("xiaoMing 是 \(r.displayStyle!)")
+            
+            print("属性个数:\(r.children.count)")
+            for i in r.children {
+                print(i.label,i.value)
+                //if(r.children.startIndex<r.children.endIndex)
+                //i.label
+               // print("属性名:\(r.children[i].0!)，值:\(r.children[i].1)")
+            }
+        }
+        
+//        func valueFrom(object: Any, key: String) -> Any? {
+//            let mirror = Mirror(reflecting: object)
+//            for i in mirror.children.startIndex ..< mirror.children.endIndex {
+//                let (targetKey, targetMirror) = mirror.children[i]
+//                if key == targetKey {
+//                    return targetMirror
+//                }
+//            }
+//            return nil
+//        }
+
+    }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
